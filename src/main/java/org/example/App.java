@@ -1,13 +1,25 @@
 package org.example;
-
-/**
- * Hello world!
- *
- */
+import java.sql.SQLException;
 public class App 
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public static void main( String[] args ) {
+
+        try{
+            DBConnection db = DBConnection.getInstance();
+            // Insertion
+            Task task1 = new Task("Do DB assignment", true, "Hmzh Dubh");
+            Task task2 = new Task("Push the Code",false, "Hmzh Dubh");
+            //task1.insertTask();
+            //task2.insertTask();
+            // Update
+            // todo
+            task2.updateTask();
+            // Retrieval
+            task1.retrieveTasks();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+
+        }
     }
 }
