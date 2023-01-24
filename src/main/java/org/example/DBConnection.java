@@ -3,13 +3,18 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
+import io.github.cdimascio.dotenv.Dotenv;
 public class DBConnection {
     private final String url;
     private final int port;
     private final String DBName;
     private Connection connection;
     private static DBConnection instance;
+
+    // SECRET TODO
+    Dotenv dotenv = Dotenv.load();
+    String DBUsername = dotenv.get("DB_Username");
+    String DBPassword = dotenv.get("DB_Password");
 
     private DBConnection() throws SQLException{
 
@@ -18,8 +23,8 @@ public class DBConnection {
         this.url = "jdbc:postgresql://localhost:" + Integer.toString(this.port) + "/" + this.DBName;
 
         Properties props = new Properties();
-        props.setProperty("user", "postgres");
-        props.setProperty("password", "IVIeeZo_2015");
+        props.setProperty("user", DBUsername);
+        props.setProperty("password", DBPassword);
         props.setProperty("ssl", "false");
 
         this.connection = DriverManager.getConnection(url, props);
