@@ -7,7 +7,7 @@ public class App {
 
             Task task1 = new Task("Do DB assignment", true, "Hmzh Dubh");
             Task task2 = new Task("Push the Code",false, "Hmzh Dubh");
-            
+
             // Insertion
             task1.insertTask();
             task2.insertTask();
